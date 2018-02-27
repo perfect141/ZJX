@@ -1,0 +1,8 @@
+#忽略的
+node_modules
+dist
+.*
+
+#不能忽略的
+!.gitignore
+!.babelrc
