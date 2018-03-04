@@ -1,53 +1,50 @@
 <template>
-   <el-row class="tac">
-  <el-col :span="12">
-    <h5>默认颜色</h5>
-    <el-menu
-      default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose">
-      <el-submenu index="1">
-        <template slot="title">
-          <!-- <i class="el-icon-location"></i> -->
-          <i class="el-icon-document"></i>
-          <span>导航一</span>
-        </template>
-            <el-menu-item-group>
-                <!-- <template slot="title">分组一</template> -->
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-                <!-- <el-menu-item-group title="分组2"> -->
-                <!-- <el-menu-item index="1-3">选项3</el-menu-item> -->
-            <!-- </el-menu-item-group> -->
-        <!-- <el-submenu index="1-4"> -->
-          <!-- <template slot="title">选项4</template> -->
-          <!-- <el-menu-item index="1-4-1">选项1</el-menu-item> -->
-        <!-- </el-submenu> -->
-        
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
-    </el-menu>
-  </el-col>
-  
-</el-row>
-  
+   <div>
+       <el-menu class="el-menu-vertical-demo" background-color="#545c64"
+            text-color="#fff" active-text-color="#ffd04b">
+
+            <!-- 预留一个一级菜单, 将来通过v-for动态生成多组一级菜单 -->
+            <!-- 这里的index用来给当前菜单起个名字, 以区分 -->
+            <el-submenu v-for="item in menu" :key="item.title" :index="item.title" >
+
+                <!-- 菜单title -->
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>{{ item.title }}</span>
+                </template>
+
+                <!-- 菜单列表, 遍历当前菜单的chidren拿数据 -->
+                <el-menu-item index="1-1" v-for="subitem in item.chidren" :key="subitem.title">
+                    <router-link :to="subitem.path">{{ subitem.title }}</router-link>
+                </el-menu-item>
+
+            </el-submenu>
+
+        </el-menu>
+   </div>
+    
 </template>
 
 <script>
 export default {
+    data(){
+      return {
+        menu:[
+          {title:'商品管理',chidren:[
+            { title: '内容管理', path: '/admin/goods/list' }, 
+            { title: '类别管理', path: '/admin/goods/category' }, 
+            { title: '评论管理', path: '/admin/goods/comment' } 
+               ]},
+          {title:'定单管理',chidren:[
+             { title: '内容管理1', path: '/admin/a' }, 
+            { title: '类别管理2', path: '/admin/b' }, 
+            { title: '评论管理3', path: '/admin/b' } 
+          ]},
+         
+          ]
+
+      }
+    }
   
 }
 </script>

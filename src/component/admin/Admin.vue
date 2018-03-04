@@ -9,7 +9,7 @@
             <el-container class="admin_content">
                 <!-- 公共的左侧  -->
                 <el-aside width="200px">
-                    Aside
+                    <!-- Aside -->
                     <app-aside> </app-aside>
                  </el-aside>
                 <!-- 变化的后天管理页面 -->
@@ -50,10 +50,12 @@ export default {
          height: 100%;
      }
      .el-aside{
-         background-color: aqua;
+         background-color: rgb(84, 92, 100)
+        //  background-color: aqua;
      }
      .el-main {
          background-color: #cc3; 
+        
      }
 
  
