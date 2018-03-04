@@ -102,7 +102,7 @@ export default {
         return {
                 // 1.搜索功能
                 apiQuery: {
-                    pageIndex: 0,
+                    pageIndex: 1,
                     pageSize: 2,
                     searchvalue: '',
                     // total:400  是死数据
