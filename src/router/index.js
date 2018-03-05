@@ -21,7 +21,7 @@ const  goods = [
 ]
 
 // 导出路由实例 
-export default new VueRouter({
+let router = new VueRouter({
     routes: [
         //登录页面
         { name: 'login', path: '/login', component: Login },
@@ -32,4 +32,35 @@ export default new VueRouter({
         ]},
        
     ]
+});
+//添加一个前置守卫--解决是否登录过问题
+router.beforeEach((to, from, next) => {
+    Vue.prototype.$http.get(Vue.prototype.$api.islogin).then(res =>{
+        let isLogin = false;
+        //1.已登录
+        if (res.data.code == 'logined'){
+            let isLogin  = true;
+        }
+
+        //2.如果访问登陆页面
+        if(to.name == "login"){
+            if (isLogin){
+                next({name:'adimin'})
+            }else{
+                next();
+            }
+            
+        }
+
+        //3.如果访问后台页面
+        if(to.name != 'login'){
+            if(isLogin){
+                next()
+            }else{
+                next({name:'adimin'})
+            }
+
+        }
+    })
 })
+export default router;
