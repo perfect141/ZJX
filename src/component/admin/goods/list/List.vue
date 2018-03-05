@@ -29,7 +29,7 @@
             <el-table-column label="标题">
                 <template slot-scope="scope">
                     <el-tooltip class="item" effect="dark" content="Right Top 提示文字,你是一头猪！！" placement="right-start">
-                        <router-link style="color: #666;" :to="{ path:`/admin/goods/detail/${scope.row.title}` }">{{ scope.row.title }}</router-link>
+                        <router-link style="color: #666;" :to="{ path:`/admin/goods/detail/${scope.row.id}` }">{{ scope.row.title }}</router-link>
                         <div slot="content"><img :src="scope.row.imgurl" alt="商品图片显示" style="width:200px;"></div>
                     </el-tooltip>
                 </template>  
